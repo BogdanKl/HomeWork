@@ -1,3 +1,4 @@
+//Klepach Bogdan
 package coins;
 
 import java.io.BufferedReader;
@@ -16,8 +17,6 @@ public class Coins {
         {
             coin[i] = Integer.parseInt(input.readLine());
         }
-        
-        //int[] coin = {1, 5, 10};
         Variants var = new Variants();
         System.out.println( var.variants(need, coin));
     }
