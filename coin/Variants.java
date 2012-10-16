@@ -1,7 +1,7 @@
 package coins;
 
 public class Variants {
-    private int variantspart(int i,int needs, int[] a)
+    public int variants(int i,int needs, int[] a)
     {
         if (needs == 0)
         {
@@ -11,22 +11,7 @@ public class Variants {
         {
             return 0;       
         }
-        return(variantspart(i+1, needs, a)+variantspart(i, needs - a[i], a));
+        return(variants(i+1, needs, a)+variants(i, needs - a[i], a));
         
-        
-    }
-    public int variants(int need, int[] coin)
-    {           
-        int leng = coin.length;
-        if (need == 0)
-        {
-            return 1;
-        }
-        if ((need < 0)||(leng == 0))
-        {
-            return 0;
-        }
-        return (variantspart(1,need, coin) + variants(need - coin[0], coin));
-    }
-        
+     }      
 }
