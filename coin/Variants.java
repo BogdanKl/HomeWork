@@ -1,7 +1,7 @@
 package coins;
-
+//count the number of options
 public class Variants {
-    public int variants(int i,int needs, int[] a)
+    private int variantspart(int i,int needs, int[] a)
     {
         if (needs == 0)
         {
@@ -11,7 +11,18 @@ public class Variants {
         {
             return 0;       
         }
-        return(variants(i+1, needs, a)+variants(i, needs - a[i], a));
+        return(variantspart(i+1, needs, a)+variantspart(i, needs - a[i], a));
         
-     }      
+     }
+    public int variants(int need, int[] a )
+    {
+        if (need != 0)
+        {
+            return (variantspart(0, need, a));
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }

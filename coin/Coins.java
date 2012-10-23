@@ -18,6 +18,6 @@ public class Coins {
             coin[i] = Integer.parseInt(input.readLine());
         }
         Variants var = new Variants();
-        System.out.println( var.variants(0, need, coin));
+        System.out.println( var.variants(need, coin));
     }
 }

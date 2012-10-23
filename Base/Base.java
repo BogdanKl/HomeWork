@@ -10,6 +10,17 @@ public class Base {
         double x = 0;
         BufferedReader input = new BufferedReader(new InputStreamReader(System.in));        
         x=Double.parseDouble(input.readLine());
-        System.out.print(Sqrt.sqrt(x));
+        if (x == 0)
+        {
+            System.out.println("0");
+        }
+        if (x <0)
+        {
+            System.out.println("Error");
+        }
+        else
+        {
+            System.out.print(Sqrt.sqrt(x));
+        }
       }
 }
