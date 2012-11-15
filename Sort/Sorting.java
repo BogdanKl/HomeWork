@@ -1,27 +1,27 @@
 
 package sort;
 class Sorting {
-   private static void swap(Object[] mass, int x, int y){
-        Object  temp;
-        temp = mass[x];
-        mass[x] = mass[y];
-        mass[y] = temp;
+   private static void swap(Element x, Element y){
+        Element temp;
+        temp = x;
+        x = y;
+        y = temp;
     }
-    public static void sort(Object[] mass){
-        int leng = mass.length - 1;
+    public static void sort(Element[] mass){
+        int leng = 2;
         int i, j;
-        for (i = leng; i >= 0; i++){
-            for(j = i; j >= 0; i++)
+        for (i = leng; i >= 0; i--){
+            for(j = i; j >= 0; j--)
             {
                 if (Compare.compare(mass[j],mass[i]))
                         {
-                            swap(mass,i ,j);
+                            swap(mass[i],mass[j]);
                         }
             }
         }
         for (i = 0; i <= leng; i++)
         {
-            System.out.print(mass[i]+ " ");
+            System.out.println(mass[i].name+ " "+ " "+mass[i].age);
         }
     }
   }
