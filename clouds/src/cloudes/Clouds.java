@@ -7,16 +7,17 @@ public class Clouds {
     protected iDaylight daylight = new Daylight();
     protected iLuminary luminary = new Luminary();
     protected iWind wind = new Wind();
-    protected Magic magic = new Magic();
+    protected iMagic magic = new Magic();
     private int power;
     private boolean sun;
     private Timeofday day;
 
-    Clouds(iDaylight d, iLuminary l, iWind w){ 
+    Clouds(iDaylight d, iLuminary l, iWind w, iMagic m){ 
         daylight = d;
         luminary = l;
         wind = w;
-    }
+        magic =m;
+      }
 
     public Creature iternalCreate() {
         power = wind.getPower();
