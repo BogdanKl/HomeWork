@@ -43,8 +43,8 @@ public class Main {
                 matrixb[i][j] = Integer.parseInt(input.readLine());
             }
         }
-    Matrix m = new Matrix(lengtha,heighta,lengthb,heightb);
-    int [][] r = m.mmatrix(matrixa, matrixb);         
+    Matrix m = new Matrix(lengthb,heightb,matrixb);
+    int [][] r = m.mmatrix(lengtha, heighta, matrixa);         
     for( i =0 ; i < lengtha; i++)
     {
         for( j =0; j <heightb; j++)

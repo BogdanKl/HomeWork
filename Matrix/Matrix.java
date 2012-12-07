@@ -8,38 +8,34 @@ import java.util.concurrent.Future;
 
 public class Matrix {
 
-    private int lengtha;
-    private int heighta;
     private int lengthb;
     private int heightb;
+    private int[][] matrixb;
 
-    public Matrix(int lena, int heia, int lenb, int heib) {
-        lengtha = lena;
-        heighta = heia;
-        lengthb = lenb;
-        heightb = heib;
+    public Matrix(int leng, int heig, int[][] matrix) {
+        lengthb = leng;
+        heightb = heig;
+        matrixb = matrix;
     }
 
-    private int[][] transpose(int[][] matrix) {
-        int leng = matrix.length;
-        int heig = matrix[0].length;
-        int[][] result = new int[heig][leng];
+    private void transpose() {
+        int[][] result = new int[heightb][lengthb];
         int i, j;
-        for (i = 0; i < leng; i++) {
-            for (j = 0; j < heig; j++) {
-                result[j][i] = matrix[i][j];
+        for (i = 0; i < lengthb; i++) {
+            for (j = 0; j < heightb; j++) {
+                result[j][i] = matrixb[i][j];
             }
         }
-        return result;
+        matrixb = result;
     }
 
-    public int[][] mmatrix(int[][] matrixa, int[][] matrixb) {
+    public int[][] mmatrix(int lengtha, int heighta, int[][] matrixa) {
         int i, j;
+        this.transpose();
         if (heighta != lengthb) {
             System.out.println("Высота первой матрицы и длина второй матрицы должны совпадать");
             throw new IllegalArgumentException();
         }
-        matrixb = transpose(matrixb);
         ExecutorService exec = Executors.newCachedThreadPool();
         ArrayList<Future<Integer>> res = new ArrayList<Future<Integer>>();
         int countera = 0;
