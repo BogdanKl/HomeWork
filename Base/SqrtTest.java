@@ -15,8 +15,18 @@ public class SqrtTest {
         System.out.println("sqrtLong");
         double x = 9e50;
         double expResult = 3e25;
+        double epsilon = expResult * 1e-9;
         double result = Sqrt.sqrt(x);
-        assertEquals(expResult, result, 6);
+        assertEquals(expResult, result, epsilon);
+    }
+    @Test
+    public void testSqrtSmall(){
+        System.out.println("sqrtSmal");
+        double x = 9e-50;
+        double expResult = 3e-25;
+        double epsilon = expResult * 1e-9;
+        double result = Sqrt.sqrt(x);
+        assertEquals(expResult, result, epsilon);
     }
     @Test
     public void testSqrt(){

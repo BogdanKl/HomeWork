@@ -3,12 +3,25 @@ package worlds;
 import java.util.Random;
 
 public class Dog extends Pets{
-        private static boolean placeHome;
-        private static boolean seeCat;
-        private static boolean seeRat;
-        private static int hangry;
+          
+        private boolean placeHome;
+        private boolean[] seeCat;
+        private boolean[] seeRat;
+        private int hungry;
         private Random ran = new Random();
-
+        private Siamese[] s = Worlds.cat;
+        private int sl = Worlds.catlen;
+        private Rat[] r = Worlds.rat;
+        private int rl = Worlds.ratlen;
+        public int vision =55;
+        public int reserve = 10;
+        public String name;
+        Dog(String n, boolean home, int h)
+        {
+            name = n;
+            placeHome = home;
+            hungry =h;
+        }
 
     @Override
     public void getStatus() {
@@ -20,53 +33,77 @@ public class Dog extends Pets{
 
     @Override
     public void eat() {
-        if(hangry < 2)
+        if(hungry < 2)
         {
-            hangry++;
+            hungry++;
         }
     }
 
     @Override
     public void lookaround() {
-        Siamese cat = new Siamese();
-        if(cat.isHome() == placeHome && ran.nextInt(10)<6)
+        for (int i =0; i < sl; i++)
         {
-            seeCat =true;
-        }
-        Rat rat = new Rat();
-        {
-            if(rat.isHome() == placeHome && ran.nextInt(10)<5)
+            if (placeHome == s[i].isHome() && ran.nextInt(100)< this.visibility(s[i].vision))
             {
-                seeRat = true;
+                seeCat[i] = true;
+            }
+            else
+            {
+                seeCat[i] = false;
+            }
+        }
+        for(int j =0; j < rl; j++)
+        {
+            if(placeHome == r[j].isHome() && ran.nextInt(100) < this.visibility(r[j].vision))
+            {
+                seeRat[j] = true;
+            }
+            else
+            {
+                seeRat[j] = false;
             }
         }
     }
 
     @Override
     public void heard() {
-        Choose.choose(TAnimals.Dog, Action.lookaround);
+        Choose.choose(this, Action.lookaround);
     }
 
     @Override
     public void bite() {
-        if(seeCat)
+        for(int i = 0; i < sl; i++)
         {
-            Choose.choose(TAnimals.Dog, Action.bite);
+        if(seeCat[i])
+        {
+            Choose.choose(s[i], Action.goHome);
+            break;
         }
         else
         {
-            if(seeRat)
+            for(int j = 0; j < rl; j++)
+            {
+            if(seeRat[j])
             {
                 
-                Choose.choose(TAnimals.Dog, Action.bite);
+                Choose.choose(r[j], Action.goHome);
+                break;
             }
+            }
+        }
         }
     }
 
     @Override
     public void noise() {
-        Choose.choose(TAnimals.Siamese, Action.heard);
-        Choose.choose(TAnimals.Rat, Action.heard);
+        for(int i = 0; i < sl; i++)
+        {
+          Choose.choose(s[i], Action.heard);
+        }
+        for(int j = 0; j < rl; j++)
+        {
+            Choose.choose(r[j], Action.heard);
+        }
     }
 
     @Override
@@ -80,14 +117,32 @@ public class Dog extends Pets{
     }
 
     @Override
-    public int isHangry() {
-        return hangry;
+    public int isHungry() {
+        return hungry;
     }
-        public static void setDog(boolean place, boolean cat, boolean rat, int h){
-        placeHome = place;
-        seeCat = cat;
-        seeRat = rat;
-        hangry = h;
-      }
     
+    @Override
+    public void goHome()
+    {
+        placeHome = true;
+        this.seeCat = null;
+        this.seeRat = null;
+    }
+    
+    @Override
+    public void goOut()
+    {
+        placeHome =false;
+        this.seeCat = null;
+        this.seeRat = null;
+    }
+    
+    @Override
+    public String getName()
+    {
+        return name;
+    }
+   
 }
+
+

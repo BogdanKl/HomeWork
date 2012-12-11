@@ -3,89 +3,98 @@ package worlds;
 import java.util.Random;
 
 public class Siamese extends Pets {
-    private static boolean placeHome;
-    private static boolean sleep;
-    private static boolean seeDog ;
-    private static boolean seeMaus;
-    private Random r = new Random(); 
-    private static int hangry;
-    public void setSiamese(boolean place, boolean dog, boolean maus, int h){
-        placeHome = place;
-        seeDog = dog;
-        seeMaus = maus;
-        hangry = h;
-      }
+
+    private boolean placeHome;
+    private boolean sleep;
+    private boolean[] seeDog;
+    private boolean[] seeMaus;
+    private Random r = new Random();
+    private int hungry;
+    private static Dog[] d;
+    private static int dl;
+    private static Maus[] m;
+    private static int ml;
+    public int vision = 65;
+    public String name;
+
+    Siamese(String n, boolean home, int h) {
+        name = n;
+        placeHome = home;
+        hungry = h;
+    }
+
+    static void set() {
+        d = Worlds.dog;
+        dl = Worlds.doglen;
+        m = Worlds.maus;
+        ml = Worlds.mauslen;
+    }
+
     @Override
     public void getStatus() {
-       System.out.println("\n"+"Cat");
-       System.out.println("Sleep: "+sleep);
-       System.out.println("Home: "+ placeHome);
-       System.out.println("See dog"+ seeDog);
-       System.out.println("See maus"+ seeMaus);
+        System.out.println("\n" + "Cat");
+        System.out.println("Sleep: " + sleep);
+        System.out.println("Home: " + placeHome);
+        System.out.println("See dog" + seeDog);
+        System.out.println("See maus" + seeMaus);
     }
 
     @Override
     public void eat() {
-       if (hangry < 2)
-       {
-           hangry++;
-           Choose.choose(TAnimals.Siamese, Action.noise);
-       }
-       if (hangry == 2)
-       {
-           sleep = true;
-       }
+        if (hungry < 2) {
+            hungry++;
+            Choose.choose(this, Action.noise);
+        }
+        if (hungry == 2) {
+            sleep = true;
+        }
     }
 
     @Override
     public void lookaround() {
-        MauseVole maus = new MauseVole();
-        if(maus.isHome() == placeHome && r.nextInt(10)<6)
-        {
-            
-            seeMaus =true;
+        for (int i = 0; i < ml; i++) {
+            if (m[i].isHome() == placeHome && r.nextInt(100) < this.visibility(m[i].reserve)) {
+
+                seeMaus[i] = true;
+            } else {
+                seeMaus[i] = false;
+            }
         }
-        else
-        {
-            seeMaus = false;
-        }
-        Dog dog = new Dog();
-        if(dog.isHome() == placeHome && r.nextInt(10)<9)
-        {
-            seeDog = true;
-        }
-        else
-        {
-            seeDog = false;
+        for (int i = 0; i < dl; i++) {
+            if (d[i].isHome() == placeHome && r.nextInt(100) < this.visibility(d[i].visibility(d[i].reserve))) {
+                seeDog[i] = true;
+            } else {
+                seeDog[i] = false;
+            }
         }
     }
 
     @Override
     public void heard() {
-        sleep =false;
-        Choose.choose(TAnimals.Siamese, Action.lookaround);
+        sleep = false;
+        Choose.choose(this, Action.lookaround);
     }
 
     @Override
     public void bite() {
-        if(seeDog){
-            seeMaus=false;
-            if (placeHome)
-            {
-                placeHome = !placeHome;
-               Choose.choose(TAnimals.Siamese,Action.goOut);
-            }
-            else
-            {
-                placeHome = !placeHome;
-                Choose.choose(TAnimals.Siamese, Action.goHome);
+        for (int i = 0; i < dl; i++) {
+            if (seeDog[i]) {
+                seeMaus[i] = false;
+                if (placeHome) {
+                    placeHome = !placeHome;
+                    Choose.choose(this, Action.goOut);
+                } else {
+                    placeHome = !placeHome;
+                    Choose.choose(this, Action.goHome);
+                }
             }
         }
-        if(seeMaus)
-        {
-            Choose.choose(TAnimals.Siamese,Action.bite);
+        for (int i = 0; i < ml; i++) {
+            if (seeMaus[i]) {
+                Choose.choose(m[i], Action.goOut);
+            }
         }
-        
+
     }
 
     @Override
@@ -99,14 +108,36 @@ public class Siamese extends Pets {
     }
 
     @Override
-    public int isHangry() {
-        return hangry;
+    public int isHungry() {
+        return hungry;
     }
 
     @Override
     public void noise() {
-        Choose.choose(TAnimals.Dog, Action.heard);
-        Choose.choose(TAnimals.MausVole, Action.heard);
+        for (int i = 0; i < dl; i++) {
+            Choose.choose(d[i], Action.heard);
+        }
+        for (int i = 0; i < ml; i++) {
+            Choose.choose(m[i], Action.heard);
+        }
     }
-    
+
+    @Override
+    public void goHome() {
+        placeHome = true;
+        this.seeMaus = null;
+        this.seeDog = null;
+    }
+
+    @Override
+    public void goOut() {
+        placeHome = true;
+        this.seeMaus = null;
+        this.seeDog = null;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
 }
