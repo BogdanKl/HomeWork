@@ -43,15 +43,10 @@ public class Main {
                 matrixb[i][j] = Integer.parseInt(input.readLine());
             }
         }
-    Matrix m = new Matrix(lengthb,heightb,matrixb);
-    int [][] r = m.mmatrix(lengtha, heighta, matrixa);         
-    for( i =0 ; i < lengtha; i++)
-    {
-        for( j =0; j <heightb; j++)
-        {
-           System.out.print(r[i][j]+" "); 
-        }
-        System.out.println();
-    }
+    Matrix mb = new Matrix(lengthb, heightb, matrixb);
+    Matrix ma = new Matrix(lengtha, heighta, matrixa); 
+    Matrix result = MatrixOp.mul(ma,mb);
+    MatrixOp.print(result);
+
  }
 }
