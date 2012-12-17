@@ -5,34 +5,27 @@ import org.junit.*;
 import static org.junit.Assert.*;
 public class CheckmailTest {
     @Test
-    public void testCheckmail() {
+    public void testCheckmailTrue() {
         System.out.println("checkmail");
-        String str = " s";
-        boolean expResult = false;
-        boolean result = Checkmail.checkmail(str);
-        assertEquals(expResult, result);
-     }
-     @Test
-     public void testCheckmail1() {
-        System.out.println("checkmail");
-        String str = "Checkmail";
-        boolean expResult = false;
-        boolean result = Checkmail.checkmail(str);
-        assertEquals(expResult, result);
-     }
-     @Test
-     public void testCheckmail2() {
-        System.out.println("checkmail");
-        String str = "Chekmail@mail.k";
-        boolean expResult = false;
-        boolean result = Checkmail.checkmail(str);
-        assertEquals(expResult, result);
-     }@Test
-      public void testCheckmail3() {
-        System.out.println("checkmail");
-        String str = "otevet@otevet.com";
+        String[] str ={"a@b.cc","victor.polozov@mail.ru","my@domain.info","coins@hermitage.museum","_.1@mail.com"};
         boolean expResult = true;
-        boolean result = Checkmail.checkmail(str);
-        assertEquals(expResult, result);
+        for( int i = 0; i <5; i++)
+        {
+          System.out.println(str[i]);
+          boolean result = Checkmail.checkmail(str[i]);
+          assertEquals(expResult, result);
+        }
+     }
+     @Test
+     public void testCheckmailfail() {
+        System.out.println("checkmail");
+        String[] str = {"Checkmail","a..b@mail.ru","a@b.c",".a@mail.ru","yo@domain.domain"};
+        boolean expResult = false;
+        for(int i =0 ; i < 5; i++)
+        {
+            System.out.println(str[i]);
+            boolean result = Checkmail.checkmail(str[i]);
+            assertEquals(expResult, result);
+        }
      }
 }
