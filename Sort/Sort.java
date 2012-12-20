@@ -8,10 +8,9 @@ import java.io.InputStreamReader;
 public class Sort {
 
     public static void main(String[] args) throws IOException {
-        Element[] mass = new Element[3];
-        mass[0] = new Element("Vovs", 18);
-        mass[1] = new Element("Kate", 21);
-        mass[2] = new Element("Vova", 21);
-        Sorting.sort(mass);
+        Object[] mass ={121,11,47,2};
+        Sorting s = new Sorting(mass, new ConCompare());
+        s.sort();
+        s.print();
     }
 }
