@@ -2,7 +2,7 @@ package cloudes;
 
 import java.util.Random;
 
-public class Daylight implements iDaylight {
+public class Daylight implements IDaylight {
     private Random r = new Random();
     @Override
     public Timeofday current() {

@@ -4,15 +4,15 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Clouds {
 
-    protected iDaylight daylight = new Daylight();
-    protected iLuminary luminary = new Luminary();
-    protected iWind wind = new Wind();
-    protected iMagic magic = new Magic();
+    protected IDaylight daylight = new Daylight();
+    protected ILuminary luminary = new Luminary();
+    protected IWind wind = new Wind();
+    protected IMagic magic = new Magic();
     private int power;
     private boolean sun;
     private Timeofday day;
 
-    Clouds(iDaylight d, iLuminary l, iWind w, iMagic m){ 
+    Clouds(IDaylight d, ILuminary l, IWind w, IMagic m){ 
         daylight = d;
         luminary = l;
         wind = w;

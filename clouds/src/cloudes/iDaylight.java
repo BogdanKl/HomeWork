@@ -1,4 +1,4 @@
 package cloudes;
-public interface iDaylight {
+public interface IDaylight {
     public Timeofday current();
 }

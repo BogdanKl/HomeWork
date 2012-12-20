@@ -1,6 +1,6 @@
 package cloudes;
 
-public class IsShining implements iLuminary{
+public class IsShining implements ILuminary{
     private boolean result;
     IsShining(boolean result)
     {

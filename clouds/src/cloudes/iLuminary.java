@@ -1,4 +1,4 @@
 package cloudes;
-public interface iLuminary {
+public interface ILuminary {
     public boolean isShining();
 }

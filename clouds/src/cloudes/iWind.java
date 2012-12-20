@@ -1,5 +1,5 @@
 package cloudes;
-public interface iWind {
+public interface IWind {
     public int getPower();
     
 }

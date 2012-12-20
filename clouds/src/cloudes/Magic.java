@@ -1,5 +1,5 @@
 package cloudes;
-class Magic implements iMagic {
+class Magic implements IMagic {
 
     @Override
     public void callDaemon(Animals an) {

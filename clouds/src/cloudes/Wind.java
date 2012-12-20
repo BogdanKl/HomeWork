@@ -2,7 +2,7 @@ package cloudes;
 
 import java.util.Random;
 
-public class Wind implements iWind{
+public class Wind implements IWind{
     private Random r = new Random();
     @Override
     public int getPower() {

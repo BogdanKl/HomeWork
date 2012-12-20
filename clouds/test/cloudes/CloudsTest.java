@@ -27,10 +27,10 @@ public class CloudsTest {
     }
     @Test
     public void testIternalCreateKitten(){
-        final iWind wind = context.mock(iWind.class);
-        final iDaylight day = context.mock(iDaylight.class);
-        final iLuminary sun = context.mock(iLuminary.class);
-        final iMagic magic  = context.mock(iMagic.class);
+        final IWind wind = context.mock(IWind.class);
+        final IDaylight day = context.mock(IDaylight.class);
+        final ILuminary sun = context.mock(ILuminary.class);
+        final IMagic magic  = context.mock(IMagic.class);
         final Clouds cloud = new Clouds(day,sun,wind,magic);
         context.checking(new Expectations(){{
             one(wind).getPower();will(returnValue(0));
@@ -43,10 +43,10 @@ public class CloudsTest {
     }
     @Test
     public void testIternalCreatePuppy(){
-        final iWind wind = context.mock(iWind.class);
-        final iDaylight day = context.mock(iDaylight.class);
-        final iLuminary sun = context.mock(iLuminary.class);
-        final iMagic magic  = context.mock(iMagic.class);
+        final IWind wind = context.mock(IWind.class);
+        final IDaylight day = context.mock(IDaylight.class);
+        final ILuminary sun = context.mock(ILuminary.class);
+        final IMagic magic  = context.mock(IMagic.class);
         final Clouds cloud = new Clouds(day,sun,wind,magic);
         context.checking(new Expectations(){{
             one(wind).getPower();will(returnValue(1));
@@ -59,10 +59,10 @@ public class CloudsTest {
     } 
     @Test
     public void testIternalCreateHEDGEHOG(){
-        final iWind wind = context.mock(iWind.class);
-        final iDaylight day = context.mock(iDaylight.class);
-        final iLuminary sun = context.mock(iLuminary.class);
-        final iMagic magic  = context.mock(iMagic.class);
+        final IWind wind = context.mock(IWind.class);
+        final IDaylight day = context.mock(IDaylight.class);
+        final ILuminary sun = context.mock(ILuminary.class);
+        final IMagic magic  = context.mock(IMagic.class);
         final Clouds cloud = new Clouds(day,sun,wind,magic);
         context.checking(new Expectations(){{
             one(wind).getPower();will(returnValue(0));
@@ -75,10 +75,10 @@ public class CloudsTest {
     } 
     @Test
     public void testIternalCreateBear(){
-        final iWind wind = context.mock(iWind.class);
-        final iDaylight day = context.mock(iDaylight.class);
-        final iLuminary sun = context.mock(iLuminary.class);
-        final iMagic magic  = context.mock(iMagic.class);
+        final IWind wind = context.mock(IWind.class);
+        final IDaylight day = context.mock(IDaylight.class);
+        final ILuminary sun = context.mock(ILuminary.class);
+        final IMagic magic  = context.mock(IMagic.class);
         final Clouds cloud = new Clouds(day,sun,wind,magic);
         context.checking(new Expectations(){{
             one(wind).getPower();will(returnValue(2));
@@ -91,10 +91,10 @@ public class CloudsTest {
     } 
     @Test
     public void testIternalCreatePig(){
-        final iWind wind = context.mock(iWind.class);
-        final iDaylight day = context.mock(iDaylight.class);
-        final iLuminary sun = context.mock(iLuminary.class);
-        final iMagic magic  = context.mock(iMagic.class);
+        final IWind wind = context.mock(IWind.class);
+        final IDaylight day = context.mock(IDaylight.class);
+        final ILuminary sun = context.mock(ILuminary.class);
+        final IMagic magic  = context.mock(IMagic.class);
         final Clouds cloud = new Clouds(day,sun,wind,magic);
         context.checking(new Expectations(){{
             one(wind).getPower();will(returnValue(2));
@@ -107,10 +107,10 @@ public class CloudsTest {
     } 
     @Test
     public void testIternalCreateBat(){
-        final iWind wind = context.mock(iWind.class);
-        final iDaylight day = context.mock(iDaylight.class);
-        final iLuminary sun = context.mock(iLuminary.class);
-        final iMagic magic  = context.mock(iMagic.class);
+        final IWind wind = context.mock(IWind.class);
+        final IDaylight day = context.mock(IDaylight.class);
+        final ILuminary sun = context.mock(ILuminary.class);
+        final IMagic magic  = context.mock(IMagic.class);
         final Clouds cloud = new Clouds(day,sun,wind,magic);
         context.checking(new Expectations(){{
             one(wind).getPower();will(returnValue(3));
@@ -123,10 +123,10 @@ public class CloudsTest {
     } 
     @Test
     public void testIternalCreateBallon(){
-        final iWind wind = context.mock(iWind.class);
-        final iDaylight day = context.mock(iDaylight.class);
-        final iLuminary sun = context.mock(iLuminary.class);
-        final iMagic magic  = context.mock(iMagic.class);
+        final IWind wind = context.mock(IWind.class);
+        final IDaylight day = context.mock(IDaylight.class);
+        final ILuminary sun = context.mock(ILuminary.class);
+        final IMagic magic  = context.mock(IMagic.class);
         final Clouds cloud = new Clouds(day,sun,wind,magic);
         context.checking(new Expectations(){{
             one(wind).getPower();will(returnValue(5));

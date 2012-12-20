@@ -1,5 +1,5 @@
 package cloudes;
-public class Day implements iDaylight{
+public class Day implements IDaylight{
     private Timeofday day;
     Day(Timeofday day)
     {
