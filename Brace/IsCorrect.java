@@ -10,9 +10,25 @@ public class IsCorrect {
         int i = 0;
         while (i < leng)
         {
-            if (s.charAt(i) == '(' || s.charAt(i) == '[' || s.charAt(i) == '<')
+            if (s.charAt(i) == '(' || s.charAt(i) == '[')
             {
                 stac.push(s.charAt(i));
+            }
+            if (s.charAt(i) == '<')
+            {
+                stac.push(s.charAt(i));
+                i++;
+                if (s.charAt(i) == '/')
+                {
+                    i++;
+                }
+                String name ="";
+                while (Character.isLetter(s.charAt(i)))
+                {
+                    name += s.charAt(i);
+                    i++;
+                }
+                stac.push(name);
             }
             switch (s.charAt(i))
             {
@@ -47,40 +63,26 @@ public class IsCorrect {
                     {
                         return false;
                     }
+                    Object nm = stac.pop();
                     Object n =  stac.pop();
-                    if (!n.equals('<'))
+                    int temp = i;
+                    i--;
+                    String str = "";
+                    while( Character.isLetter(s.charAt(i)) )
+                    {
+                        str = s.charAt(i) + str;
+                        i--;
+                    }
+                    i = temp;
+                    if (!n.equals('<') && !nm.equals(str))
                     {
                         return false;
-                    }
-                    break;
-                }
-                case '/':
-                {
-                    i++;
-                    if (s.charAt(i) == '>')
-                    {
-                        if(stac.isEmpty())
-                        {
-                            return false;
-                        }
-                        Object n =  stac.pop();
-                        if (!n.equals('<'))
-                        {
-                            return false;
-                        }
                     }
                     break;
                 }
             }
             i++;    
         }
-        if (stac.isEmpty())
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return stac.isEmpty();
     }
 }
