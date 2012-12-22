@@ -16,14 +16,17 @@ public class HashTable {
                     acc = acc.concat(Character.toString((char) ch));
                     ch = file.read();
                 }
-                h.put(acc);
+                if (!"".equals(acc)){
+                    acc.toLowerCase();
+                    h.put(acc);
+                }
                 ch = file.read();
             }
             file.close();
             h.print();
             h.printStatictic();
         } catch (FileNotFoundException e) {
-            System.out.println("Error");
+            System.out.println("Error: не был найден файл");
         }
 
     }
