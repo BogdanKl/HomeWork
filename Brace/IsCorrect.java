@@ -14,21 +14,31 @@ public class IsCorrect {
             {
                 stac.push(s.charAt(i));
             }
-            if (s.charAt(i) == '<')
+            if (s.charAt(i) == '<' && s.charAt(i+1) != '/')
             {
-                stac.push(s.charAt(i));
-                i++;
-                if (s.charAt(i) == '/')
-                {
-                    i++;
-                }
-                String name ="";
-                while (Character.isLetter(s.charAt(i)))
-                {
-                    name += s.charAt(i);
-                    i++;
-                }
-                stac.push(name);
+               stac.push(s.charAt(i));
+               i++;
+               while (i < leng && s.charAt(i) == ' ')
+               {
+                   i++;
+               }
+               String name = "";
+               while (i < leng && (Character.isDigit(s.charAt(i)) || Character.isLetter(s.charAt(i))))
+               {
+                   name += s.charAt(i);
+                   i++;
+               }
+               stac.push(name);
+               while (s.charAt(i) != '>' && (i < leng))
+               {
+                   i++;
+               }
+               if (i == leng && s.charAt(i) != '>' )
+               {
+                   System.out.println("Error");
+                   return false;
+               }
+               stac.push(s.charAt(i));
             }
             switch (s.charAt(i))
             {
@@ -57,28 +67,45 @@ public class IsCorrect {
                     }
                     break;
                 }
-                case '>':
+                case '<':
                 {
-                    if(stac.isEmpty())
+                    i++;
+                    if (s.charAt(i)=='/')
                     {
-                        return false;
+                        i++;
+                        if (!">".equals(stac.pop().toString()))
+                        {
+                            return false;
+                        }
+                        while (i < leng && s.charAt(i) == ' ')
+                        {
+                            i++;
+                        }
+                        String n = "";
+                        while (i < leng && Character.isDigit(s.charAt(i)) || Character.isLetter(s.charAt(i)))
+                        {
+                            n += s.charAt(i);
+                            i++;
+                        }
+                        while (i < leng && s.charAt(i) != '>')
+                        {
+                            i++;
+                        }
+                        if(i == leng && s.charAt(i) != '>')
+                        {
+                            System.out.println("Error");
+                            return false;
+                        }
+                        String name = (String) stac.pop();
+                        if (!name.equals(n))
+                        {
+                            return false;
+                        }
+                        if (!"<".equals(stac.pop().toString()))
+                        {
+                            return false;
+                        }
                     }
-                    Object nm = stac.pop();
-                    Object n =  stac.pop();
-                    int temp = i;
-                    i--;
-                    String str = "";
-                    while( Character.isLetter(s.charAt(i)) )
-                    {
-                        str = s.charAt(i) + str;
-                        i--;
-                    }
-                    i = temp;
-                    if (!n.equals('<') && !nm.equals(str))
-                    {
-                        return false;
-                    }
-                    break;
                 }
             }
             i++;    
