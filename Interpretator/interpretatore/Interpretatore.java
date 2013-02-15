@@ -8,7 +8,7 @@ public class Interpretatore {
         Parser p = new Parser();
         //LazyInterpretator l = new LazyInterpretator();
         ActiveInterpretator l = new ActiveInterpretator();
-        Expression n = p.parseExpr("(fun x -> x+3) 5");
+        Expression n = p.parseExpr("let y = 4 in x * x");
         n = l.evalExpr((Expression)n);
         System.out.print(((Numb)n).getNum());              
     }

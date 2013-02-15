@@ -69,7 +69,7 @@ public abstract class Interpretator {
             case OPERATION: return eval((OP)e);
             case NUMBER: return eval((Numb)e);
             case LET: return eval((Let)e);
-            case INDETIFICATOR: throw new UnCorrectExprException("отсутыует переменная");
+            case INDETIFICATOR: throw new UnCorrectExprException("отсутствует переменная");
             case FUNCALL: return eval((FunCall)e);
             case FUNDEFF: return eval((FunDeff)e);                
         }

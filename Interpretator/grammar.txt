@@ -1,0 +1,10 @@
+Expr = Let|Fun|expr
+Fun = 'fun' Id '->' Expr
+Let = 'let' Id '=' Expr 'in' Expr
+expr = term (+|- term)*
+term = factor(*|/ factor)*
+factor = funcall
+funcall = primary(primary)*
+primary = Numb| Id |'('Expr')'
+Id = letter(letter)*
+Numb = Digit|Digit(Digit)*

@@ -27,7 +27,7 @@ class Parser {
         nextlexem();
         Expression result = parse();
         if (currlexem.getType() != LexemType.END) {
-            throw new UnCorrectTypeLexemException("");
+            throw new UnCorrectTypeLexemException("ожидалась лексема окончания строки");
         }
         return result;
     }
@@ -51,7 +51,7 @@ class Parser {
         String id = ((IDLexem) currlexem).getname();
         nextlexem();
         if (currlexem.getType() != LexemType.ARROW) {
-            throw new UnCorrectTypeLexemException("ожидалась");
+            throw new UnCorrectTypeLexemException("ожидалась ->");
         }
         nextlexem();
         return new FunDeff(id, parse());
@@ -60,7 +60,7 @@ class Parser {
     private Expression parseLet() throws Exception {
         nextlexem();
         if (currlexem.getType() != LexemType.ID) {
-            //error
+            throw new UnCorrectTypeLexemException("ожидался индетефикатор");
         }
         String id = ((IDLexem) currlexem).getname();
         nextlexem();

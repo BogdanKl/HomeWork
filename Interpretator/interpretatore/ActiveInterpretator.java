@@ -19,7 +19,7 @@ public class ActiveInterpretator extends Interpretator {
         Expression f = eval(fun.getFun());
         if (f.getType() != ExprType.FUNDEFF)
         {
-            throw new UnCorrectExprException("ожидался");
+            throw new UnCorrectExprException("ожидалось описание функции");
         }
         FunDeff fund = (FunDeff) f;
         return eval(substitute(fund.getExpr(), fund.getName(), eval(fun.getArg())));
